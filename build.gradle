@@ -1,25 +1,60 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.kotlin_version = '1.3.31'
+    ext.kotlin_version = '1.3.30'
+    ext{
+        kotlin_version = '1.3.11'
+        support_library_version='28.0.0'
+        constraint_layout_version='1.1.3'
+        junit_test_version='4.12'
+        test_runner_version='1.0.2'
+        espresso_version='3.0.2'
+        retrofit2_version='2.4.0'
+        rxJava2_version="2.x.y"
+        rxAndroid_version="2.1.0"
+        moshi_kotlin_version="1.8.0"
+        okhttp_version="3.11.0"
+        dagger_version="2.15"
+        databinding_version="2.3.1"
+        dexmaker="1.2"
+        google_play_service_version="16.0.0"
+        kotlin_permission="1.1"
+        arch_life_version="2.0.0"
+        multidex_version="1.0.3"
+        gradle_version= '3.4.0'
+        glide_version="4.8.0"
+        navigationVersion = "1.0.0-alpha07"
+    }
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath "com.android.tools.build:gradle:$gradle_version"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+
+        //bintray stuff
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
     }
 }
 
 allprojects {
+    gradle.projectsEvaluated {
+        tasks.withType(JavaCompile) {
+            options.compilerArgs << "-Xmaxerrs" << "4000"
+            options.compilerArgs << "-Xmaxwarns" << "4000"
+        }
+    }
     repositories {
         google()
         jcenter()
-        
+        maven {
+            url 'https://maven.google.com/'
+        }
     }
 }
 
