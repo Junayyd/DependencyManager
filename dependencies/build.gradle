@@ -154,7 +154,7 @@ dependencies {
 
 }
 
-apply from: 'publish.gradle'
+apply from: '../publish.gradle'
 
 apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
